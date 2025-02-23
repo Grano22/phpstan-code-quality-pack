@@ -1,0 +1,20 @@
+parameters:
+    level: 8
+    # tmpDir: /tmp - that's the default option. The /tmp directory is used in the makefile to make the pipeline faster.
+    paths:
+        - src
+        - tests
+    ignoreErrors:
+        -
+            identifier: missingType.iterableValue
+            path: tests/*
+
+services:
+    -
+        class: App\Rules\NoEmptyDeprecatedRule
+        arguments:
+            - @PHPStan\PhpDocParser\Lexer\Lexer
+            - @PHPStan\PhpDocParser\Parser\TypeParser
+            - @PHPStan\PhpDocParser\Parser\ConstExprParser
+        tags:
+            - phpstan.rules.rule
