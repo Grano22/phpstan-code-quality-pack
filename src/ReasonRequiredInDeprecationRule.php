@@ -76,6 +76,41 @@ final class ReasonRequiredInDeprecationRule implements Rule
             }
         }
 
+        foreach ($node->attrGroups as $attrGroup) {
+            foreach ($attrGroup->attrs as $attribute) {
+                $attrName = $attribute->name->toString();
+
+                if (strcasecmp($attrName, 'Deprecated') !== 0 && strcasecmp($attrName, '\\Deprecated') !== 0) {
+                    continue;
+                }
+
+                if (!$this->isNodeEmpty($attribute)) {
+                    continue;
+                }
+
+                $errorMessage = sprintf(
+                    'Empty #[Deprecated] attribute detected on line %d. Please provide a reason or remove the attribute.',
+                    $node->getLine()
+                );
+                $errors[] = RuleErrorBuilder::message($errorMessage)
+                    ->identifier('codeQualityPack.reasonRequiredInDeprecationRule')
+                    ->line($node->getLine())
+                    ->build()
+                ;
+            }
+        }
+
         return $errors;
+    }
+
+    private function isNodeEmpty(Node $attribute): bool
+    {
+        if(empty($attribute->args)) {
+            return true;
+        }
+
+        $value = $attribute->args[0]->value;
+
+        return $value instanceof Node\Scalar\String_ && trim($value->value) === '';
     }
 }

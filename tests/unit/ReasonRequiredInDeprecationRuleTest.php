@@ -26,7 +26,7 @@ class ReasonRequiredInDeprecationRuleTest extends RuleTestCase
     }
 
     #[Test]
-    public function testReasonRequiredInDeprecation(): void
+    public function testReasonIaRequiredInDocBlockDeprecation(): void
     {
         // Arrange
 
@@ -39,6 +39,28 @@ class ReasonRequiredInDeprecationRuleTest extends RuleTestCase
             [
                 'Empty @deprecated annotation detected on line 14. Please provide a reason or remove the annotation.',
                 14
+            ]
+        ]);
+    }
+
+    #[Test]
+    public function testReasonIaRequiredInDeprecatedAttribute(): void
+    {
+        // Arrange
+
+        // Act & Assert
+        $this->analyse([__DIR__ . '/data/ClassThatHasEmptyReasonInDeprecatedAttr.php'], [
+            [
+                'Empty #[Deprecated] attribute detected on line 7. Please provide a reason or remove the attribute.',
+                7,
+            ],
+            [
+                'Empty #[Deprecated] attribute detected on line 12. Please provide a reason or remove the attribute.',
+                12
+            ],
+            [
+                'Empty #[Deprecated] attribute detected on line 17. Please provide a reason or remove the attribute.',
+                17
             ]
         ]);
     }
