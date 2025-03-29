@@ -8,13 +8,3 @@ parameters:
         -
             identifier: missingType.iterableValue
             path: tests/*
-
-services:
-    -
-        class: App\Rules\NoEmptyDeprecatedRule
-        arguments:
-            - @PHPStan\PhpDocParser\Lexer\Lexer
-            - @PHPStan\PhpDocParser\Parser\TypeParser
-            - @PHPStan\PhpDocParser\Parser\ConstExprParser
-        tags:
-            - phpstan.rules.rule

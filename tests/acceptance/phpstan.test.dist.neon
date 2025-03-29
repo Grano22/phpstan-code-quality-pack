@@ -1,6 +1,6 @@
 services:
     -
-        class: App\Rules\NoEmptyDeprecatedRule
+        class: Grano22\CodeQualityPack\ReasonRequiredInDeprecationRule
         arguments:
             - @PHPStan\PhpDocParser\Lexer\Lexer
             - @PHPStan\PhpDocParser\Parser\TypeParser

@@ -1,0 +1,14 @@
+ ------ --------------------------------------------------------------------- 
+  Line   SomeDeprecatedClass.php                                              
+ ------ --------------------------------------------------------------------- 
+  12     Empty @deprecated annotation detected on line 12. Please provide a   
+         reason or remove the annotation.                                     
+         🪪  codeQualityPack.reasonRequiredInDeprecationRule                  
+  14     Empty #[Deprecated] attribute detected on line 14. Please provide a  
+         reason or remove the attribute.                                      
+         🪪  codeQualityPack.reasonRequiredInDeprecationRule                  
+ ------ --------------------------------------------------------------------- 
+
+
+ [ERROR] Found 2 errors                                                         
+
